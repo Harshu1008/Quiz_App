@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import Student from './Student';
+import Admin from './Admin';
+import { useState } from 'react';
 
-function App() {
+export default function App() {
+  const [showStudent, setShowStudent] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
+
+  const showStudentComponent = () => {
+    setShowStudent(true);
+    setShowAdmin(false);
+  };
+
+  const showAdminComponent = () => {
+    setShowStudent(false);
+    setShowAdmin(true);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <center>
+          <div className='d3'> 
+            {!showAdmin && !showStudent &&(
+              <div className='d4'>
+                <h1>Who Are You ?</h1>
+                <button className="b1" onClick={showStudentComponent}>STUDENT</button>
+                
+                <button className="b1" onClick={showAdminComponent}>ADMIN</button>
+              </div>
+            )}
+            {showStudent && <Student/>}
+            {showAdmin && <Admin/>}
+          </div>
+      </center>  
   );
 }
-
-export default App;
